@@ -1,11 +1,10 @@
----
 version: '3.4'
 
 services:
   verba:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  # Adjust this if your Dockerfile is in a subdirectory
     ports:
       - 8000:8000
     environment:
@@ -18,12 +17,8 @@ services:
       - UNSTRUCTURED_API_KEY=$UNSTRUCTURED_API_KEY
       - UNSTRUCTURED_API_URL=$UNSTRUCTURED_API_URL
       - GITHUB_TOKEN=$GITHUB_TOKEN
-      ## IF YOU WANT AUTHENTICATION, UNCOMENT BELLOW 
-      ## AND ADD WEAVIATE SERVICE
-      #- WEAVIATE_API_KEY_VERBA=adminkey
-
     volumes:
-      - ./data:/data/
+      - ./data:/data
     depends_on:
       weaviate:
         condition: service_healthy
@@ -36,16 +31,15 @@ services:
 
   weaviate:
     command:
-      - --host
-      - 0.0.0.0
-      - --port
-      - '8080'
-      - --scheme
-      - http
+      - '--host'
+      - '0.0.0.0'
+      - '--port'
+      - '3000'  # Change the internal port to 3000 to avoid conflict
+      - '--scheme'
+      - 'http'
     image: semitechnologies/weaviate:1.24.2
     ports:
-      - 8080:8080
-      - 3000:8080
+      - 8080:3000  # Map container port 3000 to host port 8080
     volumes:
       - weaviate_data:/var/lib/weaviate
     restart: on-failure:0
@@ -63,14 +57,6 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       ENABLE_MODULES: 'text2vec-openai, generative-openai, qna-openai, text2vec-cohere'
       CLUSTER_HOSTNAME: 'node1'
-      #######IF YOU WANT AUTHENTICATION UNCOMMENT BELOW########
-      # AUTHENTICATION_APIKEY_ENABLED: 'true'
-      # AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'readonlykey,adminkey'
-      # AUTHENTICATION_APIKEY_USERS: 'jane@doe.com,john@doe.com'
-      # AUTHORIZATION_ADMINLIST_ENABLED: 'true'
-      # AUTHORIZATION_ADMINLIST_USERS: 'john@doe.com'
-      # AUTHORIZATION_ADMINLIST_READONLY_USERS: 'jane@doe.com'
 
 volumes:
   weaviate_data: {}
-...
