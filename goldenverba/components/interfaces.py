@@ -279,6 +279,9 @@ class Embedder(VerbaComponent):
         @parameter: chunk_count : int - Number of expected chunks
         @returns Optional[Exception] - Raises Exceptions if imported fail, will be catched by the manager.
         """
+        
+        f"doc_name = {doc_name} doc_class_name = {doc_class_name} chunk_class_name = {chunk_class_name}"
+        
         document = client.data_object.get_by_id(
             doc_uuid,
             class_name=doc_class_name,
