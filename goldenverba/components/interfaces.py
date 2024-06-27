@@ -244,15 +244,15 @@ class Embedder(VerbaComponent):
                             if wait_time_ms > 0:
                                 time.sleep(float(wait_time_ms) / 1000)
 
-                # self.check_document_status(
-                #     client,
-                #     uuid,
-                #     document.name,
-                #     "VERBA_Document_" + strip_non_letters(self.vectorizer),
-                #     "VERBA_Chunk_" + strip_non_letters(self.vectorizer),
-                #     len(document.chunks),
-                #     logging,
-                # )
+                self.check_document_status(
+                    client,
+                    uuid,
+                    document.name,
+                    "VERBA_Document_" + strip_non_letters(self.vectorizer),
+                    "VERBA_Chunk_" + strip_non_letters(self.vectorizer),
+                    len(document.chunks),
+                    logging,
+                )
             return logging
         except Exception as e:
             logging.append(
