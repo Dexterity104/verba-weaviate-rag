@@ -186,7 +186,7 @@ verba start
 
 4. **Access Verba**
 ```
-Visit localhost:8000
+Visit localhost:9000
 ```
 
 5. **Create .env file and add environment variables**
@@ -215,7 +215,7 @@ verba start
 
 5. **Access Verba**
 ```
-Visit localhost:8000
+Visit localhost:9000
 ```
 
 6. **Create .env file and add environment variables**
@@ -322,7 +322,7 @@ Verba supports importing documents through Unstructured (e.g .pdf). To use them 
 
 ```
 UNSTRUCTURED_API_KEY=YOUR-UNSTRUCTURED-KEY
-UNSTRUCTURED_API_URL=YOUR-SELF-HOSTED-INSTANCE # If you are self hosting, in the form of `http://localhost:8000/general/v0/general`
+UNSTRUCTURED_API_URL=YOUR-SELF-HOSTED-INSTANCE # If you are self hosting, in the form of `http://localhost:9000/general/v0/general`
 ```
 
 
@@ -378,9 +378,9 @@ Remember, Docker must be installed on your system to use this method. For instal
 
 4. **Access Verba**
 
-- You can access your local Weaviate instance at ```localhost:8080```
+- You can access your local Weaviate instance at ```localhost:9090```
 
-- You can access the Verba frontend at ```localhost:8000```
+- You can access the Verba frontend at ```localhost:9000```
 
 
 If you want your Docker Instance to install a specific version of Verba (as described in the [package section](#choosing-the-right-verba-installation-package)) you can edit the ```Dockerfile``` and change the installation line.
